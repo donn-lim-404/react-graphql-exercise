@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import { createHandler } from 'graphql-http/lib/use/express';
 import { schema } from './schema';
+import { initDatabase } from './database';
 
 dotenv.config();
 
@@ -13,6 +14,8 @@ app.all(
   createHandler({
     schema: schema,
   }),
-),
- 
+);
+
+initDatabase();
+
 app.listen(port, () => console.log(`Running a Graph API server at http://localhost:${port}/graphql`));

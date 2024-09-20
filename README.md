@@ -4,9 +4,16 @@ Take home exercise as a backend developer using graphQL (w/ Typescript)
 ## (A WORK IN PROGRESS)
 
 ### Set Up
-Create a `.env` file in the root folder and input the port you want to listen to
+Create a `.env` file in the root directory and input the necessary environment settings
 ```
-PORT=3001;  // you can replace "3001" with your preferred port
+# Later can be replaced with "production" for public deployment
+NODE_ENV = development
+
+# Setting this to "true" will perform a database connection test and auto create a user into the database
+TEST_DATABASE = false
+
+# You can replace "3001" with your preferred port
+PORT = 3001  
 ```
 
 Install the necessary modules to run the system
@@ -20,6 +27,9 @@ npm install
 ```
 npm start
 ```
+You can also use `npm run watch` to auto reload the app when you edit any typescript file within the `src` folder.
+
+This will also create an SQLite database (`database.sqlite`) in the root directory, which will serve as the database for the system.
 
 2. The console should display something similar when the system is up:
 ```
