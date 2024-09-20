@@ -7,9 +7,13 @@ Take home exercise as a backend developer using graphQL (w/ Typescript)
 Create a `.env` file in the root directory and input the necessary environment settings
 ```
 # Later can be replaced with "production" for public deployment
+# values: "development | production"
 NODE_ENV = development
 
+# Name of the database file which will be created and connected to once the system is up
+DATABASE = database.sqlite
 # Setting this to "true" will perform a database connection test and auto create a user into the database
+# values: "true | false"
 TEST_DATABASE = false
 
 # You can replace "3001" with your preferred port

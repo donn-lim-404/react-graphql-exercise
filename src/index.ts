@@ -1,7 +1,7 @@
 import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import { createHandler } from 'graphql-http/lib/use/express';
-import { schema } from './schema';
+import Schema from './schema';
 import { initDatabase } from './database';
 
 dotenv.config();
@@ -12,7 +12,7 @@ const port: String | Number = process.env.PORT || 3001;
 app.all(
   "/graphql",
   createHandler({
-    schema: schema,
+    schema: Schema.getSchema(),
   }),
 );
 
