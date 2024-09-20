@@ -1,0 +1,1 @@
+export const serviceTypes = ['delivery', 'pick-up', 'payment'];

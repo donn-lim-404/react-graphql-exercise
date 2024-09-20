@@ -1,15 +1,12 @@
-import { GraphQLObjectType, GraphQLSchema, GraphQLString } from 'graphql';
+import { GraphQLSchema } from 'graphql';
+import { QueryResolver } from './resolvers/QueryResolver';
+import { MutationResovler } from './resolvers/MutationResolver';
 
-const Query: GraphQLObjectType = new GraphQLObjectType({
-  name: 'Query',
-  fields: {
-    greet: {
-      type: GraphQLString,
-      resolve: () => 'Hello world!'
-    }
+export default class Schema {
+  public static getSchema(): GraphQLSchema {
+    return new GraphQLSchema({
+      query: new QueryResolver().queryType,
+      mutation: new MutationResovler().mutationType,
+    });
   }
-});
-
-export const schema: GraphQLSchema = new GraphQLSchema({
-  query: Query,
-});
+}

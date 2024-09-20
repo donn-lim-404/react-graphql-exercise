@@ -1,5 +1,7 @@
 import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from '@sequelize/core';
-import { AllowNull, Attribute, AutoIncrement, NotNull, PrimaryKey, Unique } from '@sequelize/core/decorators-legacy';
+import { AfterFind, AllowNull, Attribute, AutoIncrement, NotNull, PrimaryKey, Unique } from '@sequelize/core/decorators-legacy';
+import UserInterface from '../interfaces/user-interface';
+import { serviceTypes } from '../utilities/constants';
 
 export default class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   @Attribute(DataTypes.INTEGER)
@@ -30,4 +32,10 @@ export default class User extends Model<InferAttributes<User>, InferCreationAttr
 
   declare createdAt: CreationOptional<Date>
   declare updatedAt: CreationOptional<Date>
+
+  @AfterFind
+  public static test(data: any) {
+    data.map((user: UserInterface) => { user.serviceType = serviceTypes[user.service] });
+    return data;
+  }
 }
