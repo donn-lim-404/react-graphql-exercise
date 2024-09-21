@@ -1,4 +1,4 @@
-import { GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql';
+import { GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
 import { UserType } from './../entities/UserType';
 import UserService from '../services/user-service';
 import { LeadType } from '../entities/LeadType';
@@ -18,6 +18,15 @@ export class QueryResolver {
           return await UserService.getUsers();
         }
       },
+      lead: {
+        type: UserType,
+        args: {
+          id: { type: new GraphQLNonNull(GraphQLInt) }
+        },
+        resolve: async (_, { id }) => {
+          return await UserService.getUserById(id);
+        }
+      },
       leads: {
         type: new GraphQLList(UserType),
         resolve: async () => {
@@ -29,7 +38,7 @@ export class QueryResolver {
         args: {
           service: { type: GraphQLInt },
         },
-        resolve: async (_, { service, groupBy }) => {
+        resolve: async (_, { service }) => {
           let  filters;
 
           if (service) filters = { service };
