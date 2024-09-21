@@ -22,6 +22,14 @@ export class MutationResovler {
           const user: UserInterface = { name, email, mobile, postcode, service };
           return await UserService.addUser(user);
         }
+      },
+      register: {
+        type: UserType,
+        args: this.arguments,
+        resolve: async (_, { name, email, mobile, postcode, service}) => {
+          const user: UserInterface = { name, email, mobile, postcode, service };
+          return await UserService.addUser(user);
+        }
       }
     }
   })
