@@ -1,7 +1,7 @@
 import { Sequelize } from '@sequelize/core';
 import { SqliteDialect } from '@sequelize/sqlite3';
 import User from './models/User';
-import UserService from './services/user-service';
+import UserService from './services/userService';
 
 // const logging = (process.env.NODE_ENV === 'production') ? false : console.log;
 

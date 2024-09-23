@@ -1,6 +1,6 @@
 import { GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
 import { UserType } from './../entities/UserType';
-import UserService from '../services/user-service';
+import UserService from '../services/userService';
 import { LeadType } from '../entities/LeadType';
 import { serviceTypes } from '../utilities/constants';
 

@@ -9,6 +9,6 @@ export const UserType = new GraphQLObjectType({
     mobile: { type: GraphQLInt },
     postcode: { type: GraphQLInt },
     service: { type: GraphQLInt },
-    serviceType: { type: GraphQLString},
+    serviceType: { type: GraphQLString },
   }
 });

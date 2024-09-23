@@ -1,5 +1,6 @@
-import User from './../models/User';
-import UserInterface from '../interfaces/user-interface';
+import User from '../models/User';
+import UserInterface from '../interfaces/userInterface';
+import { serviceTypes } from '../utilities/constants';
 
 export default class UserService {
   public static async getUsers(filters?: { [key: string] : any } | undefined): Promise<UserInterface[]> {
@@ -22,11 +23,22 @@ export default class UserService {
     }
   }
 
+  public static async getUserByEmail(email: string) {
+    try {
+      return await User.findOne({ where: { email } });
+    }
+    catch (err) {
+      throw err;
+    }
+  }
+
   public static async addUser(data: UserInterface): Promise<UserInterface> {
     try {
       const user: User = await User.create(data);
-  
-      return user.get({ plain: true });
+      const userData: UserInterface = user.get({ plain: true });
+      userData.serviceType = serviceTypes[user.service];
+
+      return userData;
     }
     catch (err) {
       throw err;
