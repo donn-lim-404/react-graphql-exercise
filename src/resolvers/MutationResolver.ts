@@ -38,7 +38,7 @@ export class MutationResovler {
           }
           
           if (!CustomValidations.isValidEmail(email)) {
-            throw new GraphQLError(messages.error.validation.email.format);
+            throw new GraphQLError(messages.error.validation.email.invalid);
           }
           
           if (CustomValidations.isEmpty(postcode)) {
@@ -48,6 +48,10 @@ export class MutationResovler {
           if (CustomValidations.isEmpty(service)) {
             throw new GraphQLError(messages.error.validation.service.missing);
           }
+
+          if (CustomValidations.isValidService(service)) {
+            throw new GraphQLError(messages.error.validation.service.invalid);
+          } 
 
           const user: UserInterface = { name, email, mobile, postcode, service };
 

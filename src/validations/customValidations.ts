@@ -1,5 +1,5 @@
 import { GraphQLError } from 'graphql';
-import { messages } from './../utilities/constants';
+import { messages, serviceTypes, serviceTypesValue } from './../utilities/constants';
 import UserService from '../services/userService';
 
 export default class CustomValidations {
@@ -35,5 +35,13 @@ export default class CustomValidations {
     }
 
     return  true;
+  }
+
+  public static isValidService(service: number) {
+    if (!serviceTypesValue.includes(service)) {
+      return false;
+    }
+
+    return true;
   }
 }
