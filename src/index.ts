@@ -1,4 +1,5 @@
 import express, { Express } from 'express';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import { createHandler } from 'graphql-http/lib/use/express';
 import Schema from './schema';
@@ -8,6 +9,8 @@ dotenv.config();
 
 const app: Express = express();
 const port: String | Number = process.env.PORT || 3001;
+
+app.use(cors()); 
 
 app.all(
   "/graphql",
