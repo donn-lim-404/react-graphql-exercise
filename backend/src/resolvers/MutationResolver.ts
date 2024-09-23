@@ -49,9 +49,9 @@ export class MutationResovler {
             throw new GraphQLError(messages.error.validation.service.missing);
           }
 
-          if (CustomValidations.isValidService(service)) {
+          if (!CustomValidations.isValidService(service)) {
             throw new GraphQLError(messages.error.validation.service.invalid);
-          } 
+          }
 
           const user: UserInterface = { name, email, mobile, postcode, service };
 

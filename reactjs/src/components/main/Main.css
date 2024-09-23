@@ -1,0 +1,9 @@
+main {
+  .list,
+  .info,
+  .register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

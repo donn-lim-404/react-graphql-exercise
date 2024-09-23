@@ -44,6 +44,9 @@ export default class UserService {
   public static async addUser(data: UserInterface): Promise<UserInterface> {
     try {
       const user: User = await User.create(data);
+
+      console.log('>?>>', user)
+
       const userData: UserInterface = user.get({ plain: true });
       userData.serviceType = serviceTypes[user.service];
 
