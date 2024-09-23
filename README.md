@@ -53,6 +53,18 @@ The page should return a response:
 }
 ```
 
+### For testing
+
+You can run `npm test` to execute testing.
+Currently there are 3 test cases:
+
+1. Getting lead by providing the id
+
+2. Getting leads (returning a list)
+    - this would probably fail once more records have been added into the system database
+
+3. Register a lead
+
 ### For deployment
 
 To build the system and compile the code:
