@@ -26,7 +26,7 @@ export const testConnection = async (): Promise<void> => {
 export const syncDatabase = async ():Promise<void> => {
   try {
     await db.sync();
-    console.log('Database synced successfully.');
+    // console.log('Database synced successfully.');
   }
   catch (err) {
     console.error('Unable to sync to the database.', err);
@@ -38,21 +38,17 @@ export const initDatabase = async () => {
   
   await syncDatabase();
 
-  if (process.env.TEST_DATABASE === 'true') {
-    try {
-      const now: number = Date.now();
-      const data = {
-        name: 'John Doe',
-        email: `john.doe@test${now}.com`,
-        mobile: 1234,
-        // postcode: 6000,
-        service: 1
-      };
-      const user = await UserService.addUser(data);
-      console.log(`Successfully created user record for: "${user.name}"`);
-    }
-    catch (err) {
-      console.error('>>> internal error occured', err);
-    }
+  // @TODO: add for test results; can remove later on
+  try  {
+    await UserService.findOrCreateUser({
+      name: 'John Doe',
+      email: 'johndoe@domain.com',
+      mobile:  123456789,
+      postcode: 6014,
+      service: 1
+    });
+  }
+  catch (e) {
+    console.error('Unable to find or create user "John Doe".', e);
   }
 };

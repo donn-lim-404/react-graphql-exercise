@@ -16,6 +16,11 @@ app.all(
   }),
 );
 
-initDatabase();
 
-app.listen(port, () => console.log(`Running a Graph API server at http://localhost:${port}/graphql`));
+const startServer = async () => {
+  await initDatabase();
+  
+  app.listen(port, () => console.log(`Running a Graph API server at http://localhost:${port}/graphql`));
+};
+
+startServer();

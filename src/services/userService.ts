@@ -7,7 +7,10 @@ export default class UserService {
     try {
       if (filters) filters = { where: filters };
   
-      return await User.findAll(filters);
+      const users = await User.findAll(filters);
+      users.map((user: UserInterface) => { user.serviceType = serviceTypes[user.service] });
+
+      return users;
     }
     catch (err) {
       throw err;
@@ -16,7 +19,13 @@ export default class UserService {
 
   public static async getUserById(id: number) {
     try {
-      return await User.findByPk(id);
+      const user: any = await User.findByPk(id);
+
+      if (user) {
+        user.serviceType = serviceTypes[user.service];
+      }
+
+      return user;
     }
     catch (err) {
       throw err;
@@ -39,6 +48,15 @@ export default class UserService {
       userData.serviceType = serviceTypes[user.service];
 
       return userData;
+    }
+    catch (err) {
+      throw err;
+    }
+  }
+
+  public static async findOrCreateUser(data: any) {
+    try {
+      await User.findOrCreate({ where: data, defaults: data });
     }
     catch (err) {
       throw err;

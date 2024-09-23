@@ -33,12 +33,12 @@ export default class User extends Model<InferAttributes<User>, InferCreationAttr
   declare createdAt: CreationOptional<Date>
   declare updatedAt: CreationOptional<Date>
 
-  @AfterFind
-  public static afterFindMethod(data: UserInterface | UserInterface[]) {
-    if (Array.isArray(data)) {
-      data.map((user: UserInterface) => { user.serviceType = serviceTypes[user.service] });
-    }
+  // @AfterFind
+  // public static afterFindMethod(data: UserInterface | UserInterface[]) {
+  //   if (Array.isArray(data)) {
+  //     data.map((user: UserInterface) => { user.serviceType = serviceTypes[user.service] });
+  //   }
 
-    return data;
-  }
+  //   return data;
+  // }
 }
